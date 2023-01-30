@@ -1,6 +1,7 @@
 let hiddenNumber = 77;
 let countGame = 0;
 let countStep = 1;
+let state = false;
 
 let statistics = document.querySelector(".main__statistics");
 statistics.innerHTML = "Сыграно игр: " + countGame;
@@ -48,6 +49,7 @@ const checkNumber = () => {
       addButton();
       hiddenNumber = Math.floor(Math.random() * 100 + 1);
       countStep = 1;
+      state = true;
     }
     input.value = "";
   }
@@ -62,8 +64,12 @@ const resetForm = () => {
 };
 
 button.addEventListener("click", checkNumber);
-input.addEventListener("keydown", (event) => {
-  if (event.code === "Enter") checkNumber();
-});
 
 newButton.addEventListener("click", resetForm);
+
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Enter") {
+    if (state === false) checkNumber();
+    else resetForm();
+  }
+});
