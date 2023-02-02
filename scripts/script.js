@@ -61,13 +61,14 @@ const resetForm = () => {
   wrapper.append(input);
   wrapper.append(button);
   wrapper.after(hint);
+  hint.innerHTML = "—";
 };
 
 button.addEventListener("click", checkNumber);
 
 newButton.addEventListener("click", resetForm);
 
-document.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
   if (event.code === "Enter") {
     if (state === false) checkNumber();
     else resetForm();
